@@ -196,6 +196,18 @@ class NeuralNetwork(torch.nn.Module):
 #     net.train()
 #     return badness/total
 
+def load_ten_of_each(dset):
+    l = []
+    n = 0
+    i = 0
+    while n < 10:
+        image, label = dset[i]
+        if label == n:
+            l.append(image)
+            n += 1
+        i += 1
+    return l
+
 def load_mnist():
     def image_to_tensor(img):
         t = tensor(np.asarray(img)).flatten().float()
@@ -223,10 +235,10 @@ def show(image):
     f.show()
 
 
-train_set, test_set = load_mnist()
+# train_set, test_set = load_mnist()
 
 if __name__ == "__main__":
-    #train_set, test_set = load_mnist()
+    train_set, test_set = load_mnist()
     num_epochs = 5
     model = NeuralNetwork()
     distance = nn.MSELoss()

@@ -22,6 +22,40 @@ dataloader = torch.utils.data.DataLoader(trainset, batch_size=32, shuffle=False,
 testset = tv.datasets.MNIST(root='./data', train=False, download=True, transform=transform)
 testloader = torch.utils.data.DataLoader(testset, batch_size=4, shuffle=False, num_workers=2)
 
+# # Network Parameters
+# num_hidden_1 = 256  # 1st layer num features
+# num_hidden_2 = 128  # 2nd layer num features (the latent dim)
+# num_input = 784  # MNIST data input (img shape: 28*28)
+
+
+# # Building the encoder
+# class Autoencoder(nn.Module):
+#     def __init__(self, x_dim, h_dim1, h_dim2):
+#         super(Autoencoder, self).__init__()
+#         # encoder part
+#         self.fc1 = nn.Linear(x_dim, h_dim1)
+#         self.fc2 = nn.Linear(h_dim1, h_dim2)
+#         # decoder part
+#         self.fc3 = nn.Linear(h_dim2, h_dim1)
+#         self.fc4 = nn.Linear(h_dim1, x_dim)
+
+#     def encoder(self, x):
+#         x = torch.sigmoid(self.fc1(x))
+#         x = torch.sigmoid(self.fc2(x))
+#         return x
+
+#     def decoder(self, x):
+#         x = torch.sigmoid(self.fc3(x))
+#         x = torch.sigmoid(self.fc4(x))
+#         return x
+
+#     def forward(self, x):
+#         x = self.encoder(x)
+#         x = self.decoder(x)
+#         return x
+
+# # When initialzing, it will run __init__() function as above
+# model = Autoencoder(num_input, num_hidden_1, num_hidden_2)
 # Defining Model
 
 class Autoencoder(nn.Module):
@@ -70,4 +104,4 @@ for epoch in range(num_epochs):
     # ===================log========================
     print('epoch [{}/{}], loss:{:.4f}'.format(epoch+1, num_epochs, loss.item()))
 
-torch.save(model.state_dict(), "rando.pt")
+torch.save(model.state_dict(), "rando2.pt")
