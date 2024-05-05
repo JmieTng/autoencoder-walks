@@ -88,7 +88,7 @@ def takeStepFrom(currentImage, targetNum, scale):
 
 # if __name__ == "__main__":
 # load the model and pass it into encoder
-auto = Autoencoder() 
+auto = Autoencoder()
 auto.load_state_dict(torch.load("rando.pt"))
 auto.eval()
 
