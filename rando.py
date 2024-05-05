@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Aug 15 11:21:22 2019
-
+https://github.com/SuchismitaSahu1993/Autoencoder-on-MNIST-in-Pytorch/blob/master/Autoencoder.py
 @author: suchismitasa
 """
 

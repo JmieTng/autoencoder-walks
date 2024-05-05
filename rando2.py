@@ -57,11 +57,12 @@ class Autoencoder(nn.Module):
 # When initialzing, it will run __init__() function as above
 model = Autoencoder(num_input, num_hidden_1, num_hidden_2)
 # If using GPU, model need to be set on cuda()
-model.cuda()
+# model.cuda()
 
 # define loss and parameters
 optimizer = optim.Adam(model.parameters())
 epoch = 100
+epoch = 10
 # MSE loss will calculate Mean Squared Error between the inputs 
 loss_function = nn.MSELoss()
 
@@ -70,7 +71,7 @@ for i in range(epoch):
     train_loss = 0
     for batch_idx, (data, _) in enumerate(train_loader):
         # prepare input data
-        data = data.cuda()        
+        # data = data.cuda()        
         inputs = torch.reshape(data,(-1, 784)) # -1 can be any value. So when reshape, it will satisfy 784 first
 
         # set gradient to zero
@@ -92,3 +93,4 @@ for i in range(epoch):
     if i%10==0:    
         print('====> Epoch: {} Average loss: {:.9f}'.format(i, train_loss ))
 print('====Training finish====')
+torch.save(model.state_dict(), "rando3.pt")
