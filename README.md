@@ -14,4 +14,4 @@ For example, you can see what the model thinks is in between an 8 and a 9:  ![de
 The code for the model can be found in `model.py`, and uses an architecture based on [SuchismitaSahu1993's similar project](https://github.com/SuchismitaSahu1993/Autoencoder-on-MNIST-in-Pytorch/blob/master/Autoencoder.py).
 
 ## Colab Notebook
-Check out [this notebook](https://colab.research.google.com/drive/1d6SCKH-AVXe5JO0dLGqVVMnzxSvtHRE1?usp=sharing) to learn more about Autoencoders and a hands-on denoising application!
+Check out [this notebook](https://colab.research.google.com/drive/1d6SCKH-AVXe5JO0dLGqVVMnzxSvtHRE1?usp=sharing) to learn more about Autoencoders and a hands-on denoising application! Download the [pre-trained model here](https://drive.google.com/file/d/15ASJL8kMWnWGc9mo6icnPRyUKPGSJQWk/view?usp=sharing) and upload it to the Google Colab Notebook for a quick run-through of the tutorial!
