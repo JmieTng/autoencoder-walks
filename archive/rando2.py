@@ -7,10 +7,10 @@ from torchvision import datasets,transforms
 # here, we save it to the folder called "mnist_data"
 # ToTensor() here is used to convert data type to tensor, so that can be used in network
 
-train_dataset = datasets.MNIST(root='./data', train=True, transform=transforms.ToTensor(), download=True)
-test_dataset = datasets.MNIST(root='./data', train=False, transform=transforms.ToTensor(), download=True)
+train_dataset = datasets.MNIST(root='../data', train=True, transform=transforms.ToTensor(), download=True)
+test_dataset = datasets.MNIST(root='../data', train=False, transform=transforms.ToTensor(), download=True)
 
-print(train_dataset)
+# print(train_dataset)
 
 batchSize=128
 
@@ -57,12 +57,12 @@ class Autoencoder(nn.Module):
 # When initialzing, it will run __init__() function as above
 model = Autoencoder(num_input, num_hidden_1, num_hidden_2)
 # If using GPU, model need to be set on cuda()
-# model.cuda()
+model.cuda()
 
 # define loss and parameters
 optimizer = optim.Adam(model.parameters())
 epoch = 100
-epoch = 10
+# epoch = 10
 # MSE loss will calculate Mean Squared Error between the inputs 
 loss_function = nn.MSELoss()
 
@@ -71,7 +71,7 @@ for i in range(epoch):
     train_loss = 0
     for batch_idx, (data, _) in enumerate(train_loader):
         # prepare input data
-        # data = data.cuda()        
+        data = data.cuda()        
         inputs = torch.reshape(data,(-1, 784)) # -1 can be any value. So when reshape, it will satisfy 784 first
 
         # set gradient to zero

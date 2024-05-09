@@ -2,7 +2,7 @@ import pygame
 import sys
 import numpy as np
 from torchvision import transforms
-from decode import *
+from autotools import *
 
 # Constants
 WINDOW_SIZE = (500, 500)
@@ -15,7 +15,7 @@ FONT_SIZE = 24
 BUTTON_COLOR = (0, 0, 0)
 SELECTED_COLOR = (91, 206, 250)
 OUTLINE_COLOR = (0, 100, 0)
-STEP = 0.35
+STEP = 0.4
 
 # Mock functions to avoid import errors
 

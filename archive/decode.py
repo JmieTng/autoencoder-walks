@@ -26,28 +26,62 @@ from simple_autoencoders import *
 #         return result
 
 
-class Autoencoder(nn.Module):
+# class Autoencoder(nn.Module):
 
-    def __init__(self):
-        super(Autoencoder,self).__init__()
+#     def __init__(self):
+#         super(Autoencoder,self).__init__()
         
-        self.encoder = nn.Sequential(
-            nn.Conv2d(1, 6, kernel_size=5),
-            nn.ReLU(True),
-            nn.Conv2d(6,16,kernel_size=5),
-            nn.ReLU(True))
+#         self.encoder = nn.Sequential(
+#             nn.Conv2d(1, 6, kernel_size=5),
+#             nn.ReLU(True),
+#             nn.Conv2d(6,16,kernel_size=5),
+#             nn.ReLU(True))
 
-        self.decoder = nn.Sequential(             
-            nn.ConvTranspose2d(16,6,kernel_size=5),
-            nn.ReLU(True),
-            nn.ConvTranspose2d(6,1,kernel_size=5),
-            nn.ReLU(True),
-            nn.Sigmoid())
+#         self.decoder = nn.Sequential(             
+#             nn.ConvTranspose2d(16,6,kernel_size=5),
+#             nn.ReLU(True),
+#             nn.ConvTranspose2d(6,1,kernel_size=5),
+#             nn.ReLU(True),
+#             nn.Sigmoid())
 
-    def forward(self,x):
+#     def forward(self,x):
+#         x = self.encoder(x)
+#         x = self.decoder(x)
+#         return x
+
+# Network Parameters
+num_hidden_1 = 256  # 1st layer num features
+num_hidden_2 = 128  # 2nd layer num features (the latent dim)
+num_input = 784  # MNIST data input (img shape: 28*28)
+
+
+# Building the encoder
+class Autoencoder(nn.Module):
+    def __init__(self, x_dim, h_dim1, h_dim2):
+        super(Autoencoder, self).__init__()
+        # encoder part
+        self.fc1 = nn.Linear(x_dim, h_dim1)
+        self.fc2 = nn.Linear(h_dim1, h_dim2)
+        # decoder part
+        self.fc3 = nn.Linear(h_dim2, h_dim1)
+        self.fc4 = nn.Linear(h_dim1, x_dim)
+
+    def encoder(self, x):
+        x = torch.sigmoid(self.fc1(x))
+        x = torch.sigmoid(self.fc2(x))
+        return x
+
+    def decoder(self, x):
+        x = torch.sigmoid(self.fc3(x))
+        x = torch.sigmoid(self.fc4(x))
+        return x
+
+    def forward(self, x):
         x = self.encoder(x)
         x = self.decoder(x)
         return x
+
+# When initialzing, it will run __init__() function as above
 
 def getModelOutputTensor(image):
     # encode it
@@ -88,8 +122,9 @@ def takeStepFrom(currentImage, targetNum, scale):
 
 # if __name__ == "__main__":
 # load the model and pass it into encoder
-auto = Autoencoder()
-auto.load_state_dict(torch.load("rando.pt"))
+# auto = Autoencoder()
+auto = Autoencoder(num_input, num_hidden_1, num_hidden_2)
+auto.load_state_dict(torch.load("./archive/rando3.pt"))
 auto.eval()
 
 # # save current state of (what digit, how far we are to next image (0-1)) in tuple
