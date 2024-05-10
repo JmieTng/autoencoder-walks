@@ -15,5 +15,5 @@ The code for the model can be found in `model.py`, and uses an architecture insp
 - If you start at a 1 and go towards a 3, it won't look very good. But if you take a few steps towards a 4, then go to a 3, you can get a much better 3.
 
 ## Colab Notebook
-Check out [our notebook]([[https://colab.research.google.com/drive/1NO2SWRJuDORHOaEoKRQSfw_ZRa-XtuG8?usp=sharing](https://github.com/ssocolow/autoencoder-walks/blob/main/autoencoder.ipynb)](https://github.com/ssocolow/autoencoder-walks/blob/main/autoencoder.ipynb)) to learn more about Autoencoders and a hands-on denoising application!
+Check out [our notebook](https://github.com/ssocolow/autoencoder-walks/blob/main/autoencoder.ipynb) to learn more about Autoencoders and a hands-on denoising application!
 ![colab notebook pic](https://raw.githubusercontent.com/ssocolow/autoencoder-walks/main/autoencodercollab.png)
